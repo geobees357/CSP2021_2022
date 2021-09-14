@@ -1,0 +1,77 @@
+import turtle as trtl
+
+painter = trtl.Turtle()
+
+def drawTree(scale):
+  painter.pendown()
+  painter.forward(10 * scale)
+  painter.left(90)
+  painter.forward(25 * scale)
+  painter.left(90)
+  painter.penup()
+  painter.forward(5 * scale)
+  painter.right(180)
+  painter.pendown()
+  painter.circle(25 * scale, 360, 7)
+  painter.penup()
+  painter.right(180)
+  painter.forward(5 * scale)
+  painter.pendown()
+  painter.left(90)
+  painter.forward(25 * scale)
+  painter.left(90)
+  
+def moveDir(dirr, stpNum):
+  if dirr == 1:
+    painter.penup()
+    painter.left(90)
+    painter.forward(25 * stpNum)
+    painter.right(90)
+    painter.pendown()
+  elif dirr == 2:
+    painter.penup()
+    painter.left(0)
+    painter.forward(25 * stpNum)
+    painter.right(0)
+    painter.pendown()
+  elif dirr == 3:
+    painter.penup()
+    painter.left(-90)
+    painter.forward(25 * stpNum)
+    painter.right(-90)
+    painter.pendown()
+  elif dirr == 4:
+    painter.penup()
+    painter.left(-180)
+    painter.forward(25 * stpNum)
+    painter.right(-180)
+    painter.pendown()
+
+def drawMove(scle, sttNum, dirc):
+  drawTree(scle)
+  moveDir(dirc, sttNum)
+
+clr = input("Color?")
+painter.pencolor(clr)
+
+painter.penup()
+painter.goto(-150, -175)
+
+drawMove(1, 4, 1)
+drawMove(1, 4, 1)
+drawMove(1, 4, 1)
+
+drawMove(1, 4, 2)
+drawMove(1, 4, 2)
+drawMove(1, 4, 2)
+
+drawMove(1, 4, 3)
+drawMove(1, 4, 3)
+drawMove(1, 4, 3)
+
+drawMove(1, 4, 4)
+drawMove(1, 4, 4)
+drawMove(1, 4, 4)
+
+wn = trtl.Screen()
+wn.mainloop()
