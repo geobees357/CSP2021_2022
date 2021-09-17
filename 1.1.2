@@ -1,9 +1,11 @@
 import turtle as trtl
+import random as rnd
 
 painter = trtl.Turtle()
 
-def drawTree(scale):
+def drawTree(scale, colrOne, colrTwo):
   painter.pendown()
+  painter.pencolor(colrTwo)
   painter.forward(10 * scale)
   painter.left(90)
   painter.forward(25 * scale)
@@ -12,11 +14,16 @@ def drawTree(scale):
   painter.forward(5 * scale)
   painter.right(180)
   painter.pendown()
+  painter.pencolor(colrOne)
+  painter.fillcolor(colrOne)
+  painter.begin_fill()
   painter.circle(25 * scale, 360, 7)
+  painter.end_fill()
   painter.penup()
   painter.right(180)
   painter.forward(5 * scale)
   painter.pendown()
+  painter.pencolor(colrTwo)
   painter.left(90)
   painter.forward(25 * scale)
   painter.left(90)
@@ -47,31 +54,89 @@ def moveDir(dirr, stpNum):
     painter.right(-180)
     painter.pendown()
 
-def drawMove(scle, sttNum, dirc):
-  drawTree(scle)
+def drawMove(scle, sttNum, dirc, clr1, clr2):
+  drawTree(scle, clr1, clr2)
   moveDir(dirc, sttNum)
+  
+def presetOne(crldrw1, crldrw2):
+  loopX = 0
+  loopY = 0
+  while loopY < 10:
+    while loopX < 9:
+      drawMove(0.5, 1.5, 2, crldrw1, crldrw2)
+      loopX += 1
+    loopY += 1
+    loopX = 0
+    painter.penup()
+    painter.goto(-150, -200 + (loopY * 40))
+    
+def presetTwo(crldrw1, crldrw2):
+  painter.penup()
+  painter.goto(-150, 180)
+  loopY = 0
+  loopX = 0
+  while loopY < 10:
+    while loopX < 12:
+      drawMove(0.5, rnd.randint(-1, 3), 2, crldrw1, crldrw2)
+      loopX += 1
+    painter.penup()
+    loopY += 1
+    loopX = 0
+    painter.goto(-150, 180 - (loopY * 40))
+    
+def presetThree(crldrw1, crldrw2):
+  painter.penup()
+  painter.pensize(5)
+  loopY = 0
+  loopX = 0
+  while loopY < 10:
+    while loopX < 9:
+      drawMove(0.5, 1.5, 2, crldrw1, crldrw2)
+      loopX += 1
+    loopY += 1
+    loopX = 0
+    painter.penup()
+    painter.goto(-150, -200 + (loopY * 40))
 
-clr = input("Color?")
-painter.pencolor(clr)
+#clr = input("Color?")
+#painter.pencolor(clr)
 
 painter.penup()
-painter.goto(-150, -175)
+painter.goto(-150, -200)
+painter.speed(0)
 
-drawMove(1, 4, 1)
-drawMove(1, 4, 1)
-drawMove(1, 4, 1)
+clrInOne = input("Color 1?")
+clrInTwo = input("Color 2?")
 
-drawMove(1, 4, 2)
-drawMove(1, 4, 2)
-drawMove(1, 4, 2)
+inputNum = True
 
-drawMove(1, 4, 3)
-drawMove(1, 4, 3)
-drawMove(1, 4, 3)
+def userInput():
+  prcNum = input("Which preset would you like to use? type '4' for options") 
+  if int(prcNum) == 1:
+    presetOne(clrInOne, clrInTwo)
+    inputNum = False
+  elif int(prcNum) == 2:
+    presetTwo(clrInOne, clrInTwo)
+    inputNum = False
+  elif int(prcNum) == 3:
+    presetThree(clrInOne, clrInTwo)
+    inputNum = False
+  elif int(prcNum) == 4:
+    print("1: forest loop  2: random forest  3: thick forest")
 
-drawMove(1, 4, 4)
-drawMove(1, 4, 4)
-drawMove(1, 4, 4)
+    
+    
+while inputNum == True:
+  userInput()
+
+
+
+
+
+
+
+
+
 
 wn = trtl.Screen()
 wn.mainloop()
