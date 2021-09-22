@@ -1,0 +1,65 @@
+
+#------------------------------------------------------------------------------------------
+
+#-------------------------- Maze 1
+def turnPlz(numberOfTurns):
+  xx = numberOfTurns
+  while xx > 0:
+    turn_left()
+    xx -= 1
+    
+
+i = 0
+while i < 8:
+  move()
+  if i == 3:
+    turnPlz(3)
+  i += 1 
+
+#-------------------------- Maze 2
+def turnPlz(numberOfTurns):
+  xx = numberOfTurns
+  while xx > 0:
+    turn_left()
+    xx -= 1
+    
+
+i = 0
+while i < 5:
+  move()
+  if i == 2:
+    turnPlz(3)
+  i += 1 
+  
+robot.goto(startx, starty)
+i = 0
+
+while i < 7:
+  move()
+  if i == 2:
+    turnPlz(1)
+  if i == 5:
+    turnPlz(1)
+  i += 1 
+
+#-------------------------- Maze 3
+def turnPlz(numberOfTurns):
+  xx = numberOfTurns
+  while xx > 0:
+    turn_left()
+    xx -= 1
+    
+def andUpWeGo():
+  move()
+  turnPlz(3)
+  move()
+  turnPlz(1)
+
+i = 0
+while i < 4:
+  andUpWeGo()
+  i += 1
+  if i == 2:
+    robot.pencolor("red")
+
+#------------------------------------------------------------------------------------------
