@@ -10,11 +10,20 @@ painter.end_fill()
 
 
 i = 0
-while (i < 6):
+e = 0
+
+while (i < 4):
   painter.goto(0,0)
-  painter.setheading((360 / 6) * i)
+  painter.setheading((-340 / 4) * i)
   painter.forward(70)
   i += 1
+i = 0
+while (i < 4):
+  painter.goto(0,0)
+  painter.setheading((340 / 4) * i + 4)
+  painter.forward(70)
+  i += 1
+
   
 painter.hideturtle()
 
