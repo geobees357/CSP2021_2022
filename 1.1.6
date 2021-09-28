@@ -1,0 +1,22 @@
+import turtle as trtl
+
+painter = trtl.Turtle()
+
+painter.goto(0, -40)
+painter.pensize(5)
+painter.begin_fill()
+painter.circle(40)
+painter.end_fill()
+
+
+i = 0
+while (i < 6):
+  painter.goto(0,0)
+  painter.setheading((360 / 6) * i)
+  painter.forward(70)
+  i += 1
+  
+painter.hideturtle()
+
+wn = trtl.Screen()
+wn.mainloop()
