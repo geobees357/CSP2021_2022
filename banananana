@@ -1,0 +1,90 @@
+import turtle as trtl
+
+moveStep = 20
+turtleList = []
+currentTurtle = 0
+
+
+def makeHash():
+  turtleList[currentTurtle].penup()
+  turtleList[currentTurtle].forward(moveStep / 3)
+  turtleList[currentTurtle].pendown()
+  turtleList[currentTurtle].forward(moveStep / 3)
+  turtleList[currentTurtle].penup()
+  turtleList[currentTurtle].forward(moveStep / 3)
+  turtleList[currentTurtle].pendown()
+
+
+def CheckInput(inp):
+  global moveStep
+  if(inp == "move"):
+    turtleList[currentTurtle].forward(moveStep)
+  if(inp == "turn"):
+    turnAngle = input("Angle: ")
+    turtleList[currentTurtle].right(int(turnAngle))
+  if(inp == "right"):
+    turtleList[currentTurtle].setheading(0)
+  if(inp == "left"):
+    turtleList[currentTurtle].setheading(180)
+  if(inp == "up"):
+    turtleList[currentTurtle].setheading(90)
+  if(inp == "down"):
+    turtleList[currentTurtle].setheading(270)
+  if(inp == "heading"):
+    turnFace = input("Angle: ")
+    turtleList[currentTurtle].setheading(int(turnFace))
+  if(inp == "penup"):
+    turtleList[currentTurtle].penup()
+  if(inp == "pendown"):
+    turtleList[currentTurtle].pendown()
+  if(inp == "disable"):
+    turtleList[currentTurtle].hideturtle()
+    turtleList[currentTurtle].penup()
+  if(inp == "enable"):
+    turtleList[currentTurtle].showturtle()
+    turtleList[currentTurtle].pendown()
+  #advanced inputs
+
+  if(inp == "hash"):
+    makeHash()
+  if(inp == "hashCount"):
+    loopH = 0
+    numHash = input("Hash Count: ")
+    while loopH < int(numHash):
+      makeHash()
+      loopH += 1
+
+  #variable Modifiers
+
+  if(inp == "changeStep"):
+    newStep = input("Step Size: ")
+    moveStep = int(newStep)
+
+
+loopI = 0
+while loopI < 10:
+  t = trtl.Turtle()
+  turtleList.append(t)
+  loopI += 1
+
+
+
+loopX = 0
+for t in turtleList:
+  t.penup()
+  t.goto(-100 + (loopX * 20), -100)
+  t.left(90)
+  t.pendown()
+  loopX += 1
+
+turtleNum = input("Which turtle: ")
+currentTurtle = int(turtleNum) - 1
+
+while True:
+  currentTurtle = int(turtleNum) - 1
+  turtleCommand = input("Command: ")
+  if(turtleCommand == "change"):
+    turtleNum = input("Which turtle: ")
+    currentTurtle = int(turtleNum) - 1
+  else:
+    CheckInput(turtleCommand)
