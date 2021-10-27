@@ -1,0 +1,15 @@
+commandBuffer = []
+
+def commandBufferHandle():
+    indexCounter = 0
+    for c in commandBuffer:
+        if(indexCounter == len(commandBuffer) - 1):
+            commandBuffer.pop()
+        else:
+            commandBuffer[indexCounter] = commandBuffer[indexCounter + 1]
+        indexCounter += 1
+
+while(len(commandBuffer) > 0):
+    if(len(commandBuffer) > 0):
+        commandBuffer[0]
+        commandBufferHandle()
