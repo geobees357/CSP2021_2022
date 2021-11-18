@@ -1,0 +1,149 @@
+# a121_catch_a_turtle.py
+#-----import statements-----
+import turtle as trtl
+import random as rand
+import leaderboard as lb
+
+#-----game configuration----
+spotColor = "pink"
+spotSize = 2
+spotShape = "circle"
+spotScore = 0
+
+fontSetup = ("Arial", 20, "normal")
+
+timer = 30
+counterInterval = 1000
+timerUp = False
+
+leaderBoardFileName = "a122_leaderboard.txt"
+leaderNamesList = []
+leaderScoresList = []
+playerName = input("Player Name: ")
+
+leaderboardRead = True
+#-----initialize turtle-----
+spot = trtl.Turtle()
+spot.shape(spotShape)
+spot.shapesize(spotSize)
+spot.fillcolor(spotColor)
+spot.speed(0)
+
+scoreTrtl = trtl.Turtle()
+scoreTrtl.color("blue")
+scoreTrtl.hideturtle()
+scoreTrtl.speed(0)
+scoreTrtl.penup()
+scoreTrtl.goto(-20, 300)
+scoreTrtl.pendown()
+
+counter =  trtl.Turtle()
+counter.color("blue")
+counter.hideturtle()
+counter.speed(0)
+counter.penup()
+counter.goto(-50, -300)
+#-----Create background-----
+
+colorList = ["white"]
+sizeList = [0.1, 0.2, 0.3, 0.4, 0.4, 0.5, 0.5, 0.5, 0.6, 0.6, 0.7, 0.8, 0.9, 1.0]
+colorTrtl = trtl.Turtle()
+colorTrtl.shape("circle")
+colorTrtl.shapesize(1)
+colorTrtl.speed(0)
+colorTrtl.penup()
+
+loopS = 0
+while(loopS < 100):
+    colorTrtl.penup()
+    colorTrtl.color(rand.choice(colorList))
+    colorTrtl.shapesize(rand.choice(sizeList))
+    colorTrtl.goto(rand.randint(-500, 500), rand.randint(-325, 325))
+    colorTrtl.stamp()
+    loopS += 1
+
+#-----game functions--------
+startTurtle = trtl.Turtle()
+startTurtle.shape("square")
+startTurtle.color("blue")
+startTurtle.shapesize(0.1)
+startTurtle.penup()
+startTurtle.goto(-140, 20)
+startFunction = False
+
+startTurtle.write("Click the turtle to start", font=fontSetup)
+
+def startGame():
+    startTurtle.clear()
+    global startFunction
+    startFunction = True
+
+
+
+#--------game start---------
+def manageLeaderboard():
+  
+  global leaderScoresList
+  global leaderNamesList
+  global spotScore
+  global spot
+  global leaderboardRead
+
+  # load all the leaderboard records into the lists
+  lb.load_leaderboard(lb.leaderBoardFileName, leaderNamesList, leaderScoresList)
+
+  # TODO
+  if (len(leaderScoresList) < 5 or spotScore > leaderScoresList[4]):
+    lb.update_leaderboard(lb.leaderBoardFileName, leaderNamesList, leaderScoresList, playerName, spotScore)
+    lb.draw_leaderboard(leaderNamesList, leaderScoresList, True, spot, spotScore)
+
+  else:
+    lb.draw_leaderboard(leaderNamesList, leaderScoresList, False, spot, spotScore)
+
+  leaderboardRead = False  
+
+def changePosition():
+    global spotSize, newSpotSize
+    spot.penup()
+    newX = rand.randint(-300, 300)
+    newY = rand.randint(-225, 225)
+    spot.goto(newX, newY)
+    spot.shapesize(spotSize)
+
+def spotClicked(x, y):
+    if(startFunction != True):
+        startGame()
+    if(timerUp != True):
+        updateScore()
+        changePosition()
+        
+
+
+def updateScore():
+    global spotScore
+    scoreTrtl.clear()
+    spotScore += 1
+    scoreTrtl.write(spotScore, font=fontSetup)
+
+def countdown():
+  global timer, timerUp, counterInterval, startFunction, leaderboardRead
+  counter.clear()
+  if(startFunction == False):
+      counter.write("Timer: ***", font=fontSetup)
+  elif timer <= 0:
+    counter.write("Time's Up", font=fontSetup)
+    timerUp = True
+    if(leaderboardRead == True):
+        manageLeaderboard()
+  else:
+    counter.write("Timer: " + str(timer), font=fontSetup)
+    timer -= 1
+  counter.getscreen().ontimer(countdown, counterInterval)
+
+#-----events----------------
+spot.onclick(spotClicked)
+
+wn = trtl.Screen()
+wn.bgcolor("black")
+wn.ontimer(countdown(), counterInterval) 
+wn.mainloop()
