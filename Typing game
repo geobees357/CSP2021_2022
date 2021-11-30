@@ -1,0 +1,345 @@
+#   a123_apple_1.py
+import turtle as trtl
+import random as rnd
+
+#-----setup-----
+apple_image = "apple.gif" # Store the file name of your shape
+
+wn = trtl.Screen()
+wn.setup(width=1.0, height=1.0)
+wn.addshape(apple_image) # Make the screen aware of the new file
+wn.bgpic("background.gif")
+
+apple = trtl.Turtle()
+apple.penup()
+
+writeTurtle = trtl.Turtle()
+writeTurtle.hideturtle()
+
+groundY = -200
+fall = False
+
+alphebet = ["a", "s", "d", "f", "g", "h", "j", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "z", "x", "c", "v", "b", "n", "m"]
+
+currentLetter = "a"
+letterBuffer = ["l", "k"]
+
+typedLetter = "a"
+
+speedA = 4
+
+#-----functions-----
+# given a turtle, set that turtle to be shaped by the image file
+def draw_apple(active_apple):
+  active_apple.shape(apple_image)
+  active_apple.speed(0)
+  active_apple.goto(rnd.randint(-70, 70), rnd.randint(-50, 100))
+  active_apple.showturtle()
+
+  writeTextRandom()
+
+  wn.update()
+
+def writeText(textToBeWrote):
+  writeTurtle.clear()
+  writeTurtle.penup()
+  writeTurtle.goto(-36, 200)
+  writeTurtle.pendown()
+  writeTurtle.write(textToBeWrote, font=("Arial", 74, "bold")) 
+
+def writeTextRandom():
+  global currentLetter, alphebet
+  writeTurtle.clear()
+  writeTurtle.penup()
+  writeTurtle.goto(-36, 200)
+  writeTurtle.pendown()
+  i = rnd.randint(0, len(alphebet) - 1)
+  alphebetCopy = alphebet.copy()
+  currentLetter = alphebetCopy[i]
+  alphebet.pop(i)
+  writeTurtle.write(alphebetCopy[i], font=("Arial", 74, "bold")) 
+
+
+  
+
+def gravity(active_apple, speed):
+  active_apple.speed(speed)
+  active_apple.goto(active_apple.xcor(), groundY)
+  active_apple.hideturtle()
+
+
+
+#input handlers
+
+def tpA():
+  typedLetter = "a"
+  if(currentLetter == typedLetter):
+    gravity(apple, speedA)
+    alphebet.append(letterBuffer[0])
+    letterBuffer.pop(0)
+    letterBuffer.append(currentLetter)
+    draw_apple(apple)
+
+def tpS():
+  typedLetter = "s"
+  if(currentLetter == typedLetter):
+    gravity(apple, speedA)
+    alphebet.append(letterBuffer[0])
+    letterBuffer.pop(0)
+    letterBuffer.append(currentLetter)
+    draw_apple(apple)
+
+def tpD():
+  typedLetter = "d"
+  if(currentLetter == typedLetter):
+    gravity(apple, speedA)
+    alphebet.append(letterBuffer[0])
+    letterBuffer.pop(0)
+    letterBuffer.append(currentLetter)
+    draw_apple(apple)
+
+def tpF():
+  typedLetter = "f"
+  if(currentLetter == typedLetter):
+    gravity(apple, speedA)
+    alphebet.append(letterBuffer[0])
+    letterBuffer.pop(0)
+    letterBuffer.append(currentLetter)
+    draw_apple(apple)
+
+def tpG():
+  typedLetter = "g"
+  if(currentLetter == typedLetter):
+    gravity(apple, speedA)
+    alphebet.append(letterBuffer[0])
+    letterBuffer.pop(0)
+    letterBuffer.append(currentLetter)
+    draw_apple(apple)
+
+def tpH():
+  typedLetter = "h"
+  if(currentLetter == typedLetter):
+    gravity(apple, speedA)
+    alphebet.append(letterBuffer[0])
+    letterBuffer.pop(0)
+    letterBuffer.append(currentLetter)
+    draw_apple(apple)
+
+def tpJ():
+  typedLetter = "j"
+  if(currentLetter == typedLetter):
+    gravity(apple, speedA)
+    alphebet.append(letterBuffer[0])
+    letterBuffer.pop(0)
+    letterBuffer.append(currentLetter)
+    draw_apple(apple)
+
+def tpK():
+  typedLetter = "k"
+  if(currentLetter == typedLetter):
+    gravity(apple, speedA)
+    alphebet.append(letterBuffer[0])
+    letterBuffer.pop(0)
+    letterBuffer.append(currentLetter)
+    draw_apple(apple)
+
+def tpL():
+  typedLetter = "l"
+  if(currentLetter == typedLetter):
+    gravity(apple, speedA)
+    alphebet.append(letterBuffer[0])
+    letterBuffer.pop(0)
+    letterBuffer.append(currentLetter)
+    draw_apple(apple)
+
+
+
+def tpQ():
+  typedLetter = "q"
+  if(currentLetter == typedLetter):
+    gravity(apple, speedA)
+    alphebet.append(letterBuffer[0])
+    letterBuffer.pop(0)
+    letterBuffer.append(currentLetter)
+    draw_apple(apple)
+
+def tpW():
+  typedLetter = "w"
+  if(currentLetter == typedLetter):
+    gravity(apple, speedA)
+    alphebet.append(letterBuffer[0])
+    letterBuffer.pop(0)
+    letterBuffer.append(currentLetter)
+    draw_apple(apple)
+
+def tpE():
+  typedLetter = "e"
+  if(currentLetter == typedLetter):
+    gravity(apple, speedA)
+    alphebet.append(letterBuffer[0])
+    letterBuffer.pop(0)
+    letterBuffer.append(currentLetter)
+    draw_apple(apple)
+
+def tpR():
+  typedLetter = "r"
+  if(currentLetter == typedLetter):
+    gravity(apple, speedA)
+    alphebet.append(letterBuffer[0])
+    letterBuffer.pop(0)
+    letterBuffer.append(currentLetter)
+    draw_apple(apple)
+
+def tpT():
+  typedLetter = "t"
+  if(currentLetter == typedLetter):
+    gravity(apple, speedA)
+    alphebet.append(letterBuffer[0])
+    letterBuffer.pop(0)
+    letterBuffer.append(currentLetter)
+    draw_apple(apple)
+
+def tpY():
+  typedLetter = "y"
+  if(currentLetter == typedLetter):
+    gravity(apple, speedA)
+    alphebet.append(letterBuffer[0])
+    letterBuffer.pop(0)
+    letterBuffer.append(currentLetter)
+    draw_apple(apple)
+
+def tpU():
+  typedLetter = "u"
+  if(currentLetter == typedLetter):
+    gravity(apple, speedA)
+    alphebet.append(letterBuffer[0])
+    letterBuffer.pop(0)
+    letterBuffer.append(currentLetter)
+    draw_apple(apple)
+
+def tpI():
+  typedLetter = "i"
+  if(currentLetter == typedLetter):
+    gravity(apple, speedA)
+    alphebet.append(letterBuffer[0])
+    letterBuffer.pop(0)
+    letterBuffer.append(currentLetter)
+    draw_apple(apple)
+
+def tpO():
+  typedLetter = "o"
+  if(currentLetter == typedLetter):
+    gravity(apple, speedA)
+    alphebet.append(letterBuffer[0])
+    letterBuffer.pop(0)
+    letterBuffer.append(currentLetter)
+    draw_apple(apple)
+
+def tpP():
+  typedLetter = "p"
+  if(currentLetter == typedLetter):
+    gravity(apple, speedA)
+    alphebet.append(letterBuffer[0])
+    letterBuffer.pop(0)
+    letterBuffer.append(currentLetter)
+    draw_apple(apple)
+
+
+
+def tpZ():
+  typedLetter = "z"
+  if(currentLetter == typedLetter):
+    gravity(apple, speedA)
+    alphebet.append(letterBuffer[0])
+    letterBuffer.pop(0)
+    letterBuffer.append(currentLetter)
+    draw_apple(apple)
+
+def tpX():
+  typedLetter = "x"
+  if(currentLetter == typedLetter):
+    gravity(apple, speedA)
+    alphebet.append(letterBuffer[0])
+    letterBuffer.pop(0)
+    letterBuffer.append(currentLetter)
+    draw_apple(apple)
+
+def tpC():
+  typedLetter = "c"
+  if(currentLetter == typedLetter):
+    gravity(apple, speedA)
+    alphebet.append(letterBuffer[0])
+    letterBuffer.pop(0)
+    letterBuffer.append(currentLetter)
+    draw_apple(apple)
+
+def tpV():
+  typedLetter = "v"
+  if(currentLetter == typedLetter):
+    gravity(apple, speedA)
+    alphebet.append(letterBuffer[0])
+    letterBuffer.pop(0)
+    letterBuffer.append(currentLetter)
+    draw_apple(apple)
+
+def tpB():
+  typedLetter = "b"
+  if(currentLetter == typedLetter):
+    gravity(apple, speedA)
+    alphebet.append(letterBuffer[0])
+    letterBuffer.pop(0)
+    letterBuffer.append(currentLetter)
+    draw_apple(apple)
+
+def tpN():
+  typedLetter = "n"
+  if(currentLetter == typedLetter):
+    gravity(apple, speedA)
+    alphebet.append(letterBuffer[0])
+    letterBuffer.pop(0)
+    letterBuffer.append(currentLetter)
+    draw_apple(apple)
+
+def tpM():
+  typedLetter = "m"
+  if(currentLetter == typedLetter):
+    gravity(apple, speedA)
+    alphebet.append(letterBuffer[0])
+    letterBuffer.pop(0)
+    letterBuffer.append(currentLetter)
+    draw_apple(apple)
+
+#-----function calls-----
+draw_apple(apple)
+
+wn.onkeypress(tpA, "a")
+wn.onkeypress(tpS, "s")
+wn.onkeypress(tpD, "d")
+wn.onkeypress(tpF, "f")
+wn.onkeypress(tpG, "g")
+wn.onkeypress(tpH, "h")
+wn.onkeypress(tpJ, "j")
+wn.onkeypress(tpK, "k")
+wn.onkeypress(tpL, "l")
+
+wn.onkeypress(tpQ, "q")
+wn.onkeypress(tpW, "w")
+wn.onkeypress(tpE, "e")
+wn.onkeypress(tpR, "r")
+wn.onkeypress(tpT, "t")
+wn.onkeypress(tpY, "y")
+wn.onkeypress(tpU, "u")
+wn.onkeypress(tpI, "i")
+wn.onkeypress(tpO, "o")
+wn.onkeypress(tpP, "p")
+
+wn.onkeypress(tpZ, "z")
+wn.onkeypress(tpX, "x")
+wn.onkeypress(tpC, "c")
+wn.onkeypress(tpV, "v")
+wn.onkeypress(tpB, "b")
+wn.onkeypress(tpN, "n")
+wn.onkeypress(tpM, "m")
+
+wn.listen()
+wn.mainloop()
