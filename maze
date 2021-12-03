@@ -1,0 +1,95 @@
+import turtle as trtl
+import random as rnd
+
+#Setup
+
+dTrtl = trtl.Turtle()
+dTrtl.hideturtle()
+
+intWallLength = 600
+
+wallNum = 40
+hallWidth = (intWallLength / wallNum) * 2
+wallColor = "black"
+
+#functions
+
+def drawMaze(drawTurtle):
+    loopI = 0
+    drawTurtle.penup()
+    drawTurtle.goto(-intWallLength / 2, -intWallLength / 2)
+    drawTurtle.pendown()
+    drawTurtle.speed(0)
+    drawTurtle.setheading(180)
+    while loopI < wallNum:
+        drawTurtle.right(90)
+        distanceToTravel = intWallLength * (1 - (loopI / wallNum)) + hallWidth
+
+        distanceToTravel += -drawMove(drawTurtle, distanceToTravel * (rnd.randint(100, 700) / 1000))
+        if(loopI >= 4):
+            distanceToTravel += -drawDoor(drawTurtle, distanceToTravel)
+        distanceToTravel += -drawMove(drawTurtle, distanceToTravel * (rnd.randint(0, 900) / 1000))
+        distanceToTravel += -drawBarier(drawTurtle, distanceToTravel)
+        distanceToTravel += -drawMove(drawTurtle, distanceToTravel)
+        loopI += 1
+
+def drawDoor(drawTurtle, distanceToToMove):
+    if(distanceToToMove <= hallWidth * 2):
+        return 0
+    else:
+        drawTurtle.penup()
+        drawTurtle.forward(hallWidth)
+        drawTurtle.pendown()
+        return hallWidth
+
+def drawMove(drawTurtle, distanceToToMove):
+    drawTurtle.forward(distanceToToMove)
+    return distanceToToMove
+
+def drawBarier(drawTurtle, distanceToToMove):
+    if(distanceToToMove <= hallWidth * 2):
+        return 0
+    else:
+        drawTurtle.right(90)
+        drawTurtle.forward(hallWidth)
+        drawTurtle.right(180)
+        drawTurtle.forward(hallWidth)
+        drawTurtle.right(90)
+        return 0
+
+#Runner Implement
+
+runner = trtl.Turtle()
+runner.penup()
+runner.goto((-intWallLength / 2) + (hallWidth / 2), -intWallLength / 2)
+runner.pendown()
+runner.pencolor("red")
+
+def lookUp():
+    runner.setheading(90)
+def lookDown():
+    runner.setheading(-90)
+def lookRight():
+    runner.setheading(0)
+def lookLeft():
+    runner.setheading(180)
+def dash():
+    runner.forward(hallWidth / 2)
+
+
+#runtime calls
+drawMaze(dTrtl)
+
+
+wn = trtl.Screen()
+
+
+wn.onkeypress(lookUp, "w")
+wn.onkeypress(lookLeft, "a")
+wn.onkeypress(lookDown, "s")
+wn.onkeypress(lookRight, "d")
+wn.onkeypress(dash, "space")
+
+
+wn.listen()
+wn.mainloop()
