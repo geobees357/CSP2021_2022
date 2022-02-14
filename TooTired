@@ -1,0 +1,40 @@
+import tkinter as tk
+
+def test_my_button():
+    frame_auth.tkraise()
+    authlmao.pack()
+
+
+
+# main window
+root = tk.Tk()
+root.wm_geometry("500x400")
+root.title("Project")
+
+frame_login = tk.Frame(root)
+frame_login.grid(column=0, row=0, sticky="news")
+
+lbl_username = tk.Label(frame_login, text='Username:', font="Courier", padx=10)
+lbl_username.pack()
+
+ent_username = tk.Entry(frame_login, bd=3)
+ent_username.pack(pady=5, padx=10)
+
+lbl_password = tk.Label(frame_login, text='Password:', font="Courier", padx=10)
+lbl_password.pack()
+
+ent_password = tk.Entry(frame_login, bd=3, show="*")
+ent_password.pack(pady=5, padx=10)
+
+btn_login = tk.Button(frame_login, text="     Login     ", command=test_my_button)
+btn_login.pack(pady=5, padx=10)
+
+
+frame_auth = tk.Frame(root)
+frame_auth.grid(column=0, row=0, sticky="news")
+
+authlmao = tk.Label(frame_auth, bd=3, font="Courier", text="https://www.youtube.com/watch?v=X20X781I_-I")
+
+frame_login.tkraise()
+
+root.mainloop()
